@@ -81,7 +81,7 @@ elseif ESX.GetConfig().Multichar == true then
 					dateofbirth = v.dateofbirth,
 					skin = v.skin and json.decode(v.skin) or {},
 					disabled = v.disabled,
-					sex = v.sex == 'm' and TranslateCap('male') or TranslateCap('female')
+					sex = v.sex == 'm' and _('male') or _('female')
 				}
 			end
 		end
@@ -128,8 +128,9 @@ elseif ESX.GetConfig().Multichar == true then
 
 	MySQL.ready(function()
 		local length = 42 + #PREFIX
-		local DB_COLUMNS = MySQL.query.await(('SELECT TABLE_NAME, COLUMN_NAME, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = "%s" AND DATA_TYPE = "varchar" AND COLUMN_NAME IN (?)'):format(DATABASE, length), {
-			{'identifier', 'owner'}
+
+		local DB_COLUMNS = MySQL.query.await(('SELECT TABLE_NAME, COLUMN_NAME, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = "%s" AND DATA_TYPE = "varchar" AND COLUMN_NAME IN (?) AND TABLE_NAME <> ?'):format(DATABASE, length), { --AND TABLE_NAME <> ? -for VR by Kiminaze
+		{'identifier', 'owner', 'vehicle_plate_history'} --'vehicle_plate_history' -for VR by Kiminaze
 		})
 
 		if DB_COLUMNS then
