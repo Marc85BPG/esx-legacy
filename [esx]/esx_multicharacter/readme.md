@@ -7,11 +7,9 @@ A Simple, Easy to Use resource, that allows Players to have multiple Characters,
 - You need ox_lib to get it working!
 - IT WILL NOT WORK WITHOUT ox_lib AND fivem-appearance (wasabirobby)
 
-## Relogging
-- Do not enable this setting if you do not intend to properly set up relog support
-- Requires the latest update for ESX Status (prevents multiple status ticks from running)
-
 ## Notes
+- Do not enable RELOG setting if you do not intend to properly set up relog support
+- Requires the latest update for ESX Status (prevents multiple status ticks from running)
 - Characters are stored in the users table as `char#:license`
 - Character deletion does not require manual entries for the tables to remove
 
